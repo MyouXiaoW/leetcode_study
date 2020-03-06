@@ -35,7 +35,6 @@ var strStr = function(haystack, needle) {
     let m=pLen;//重新匹配的时候位置
     let k;//失配时候在模版串的位置
     
-
     while(i<sLen){
 
         if(haystack[i] !== needle[j]){
