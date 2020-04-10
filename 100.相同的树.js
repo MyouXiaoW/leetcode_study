@@ -18,12 +18,11 @@
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
-    let pCurrent = p;
-    let qCurrent = q;
+    if(p===null && q===null) return true;
+    if(p===null || q===null) return false;
+    if(p.val !== q.val) return false;
 
-    while(pCurrent.val === qCurrent.val){
-        
-    }
+    return isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
 };
 // @lc code=end
 
