@@ -13,23 +13,22 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(nums1, m, nums2, n) {
+  let index = m+n-1;
+  while(n>0){
+     if(nums1[m-1]>nums2[n-1]){
+        nums1[index] = nums1[m-1]
+        m--
+     }else{
+         nums1[index] = nums2[n-1]
+         n--
+     }
+     index --
     
-    let len = nums1.length-1;
-    m = m-1;
-    n = n-1
-
-    while(m>=0  || n >=0){
-
-        if(n<0)break;
-        nums1[len] =  Number(nums1[m])> nums2[n] ? nums1[m--]:nums2[n--];
-        len --;
-    }
-
-    
-    console.log(nums1);
+  }
+  console.log(nums1)
 };
 
-merge([0,0,3,0,0,0,0,0,0],3,[-1,1,1,1,2,3],6)
+merge([1,2,3,0,0,0],3,[2,5,6],3)
 
 // @lc code=end
 
