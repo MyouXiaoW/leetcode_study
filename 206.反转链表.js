@@ -23,8 +23,6 @@ var reverseList = function(head) {
     let reverseHead = reverseList(next);
     
     head.next = null; // 裁减 head
-    console.log(head)
-    console.log(next)
     next.next = head; // 尾接
     return reverseHead;
 };
