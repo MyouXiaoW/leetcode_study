@@ -18,7 +18,13 @@
  * @return {TreeNode}
  */
 var deleteNode = function(root, key) {
+    if(root.val < key) root.left = deleteNode(node.right,key);
+    if(root.val > key) root.right = deleteNode(node.left,key);
+    if(root.val ===key){
+        root = root.left;
+    }
 
+    return root;
 };
 // @lc code=end
 
