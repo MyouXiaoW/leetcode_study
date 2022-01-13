@@ -7,43 +7,55 @@
 // @lc code=start
 /**
  * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
  * }
  */
 /**
  * @param {ListNode} head
- * @param {number} m
- * @param {number} n
+ * @param {number} left
+ * @param {number} right
  * @return {ListNode}
+ * 
  */
-var reverseBetween = function(head, m, n) {
-    let newNode = new ListNode(null),
-    start,
-    index=0,
-    node;
-    newNode.next = head;
-    node = newNode;
 
 
-    while(index<n){
-        if(index<m){
-            start = node;
-            node=node.next;
-        };
+function revers(head){
 
-        if(index>=m && index<n){
-            let next = node.next;
-            node.next = next.next
-            next.next = start.next;
-            start.next = next;
-        }
+    if(!head || !head.next){
+        return head;
+    }
+    const last = revers(head.next);
+    head.next.next = head;
+    head.next = null;
+    return last
+}
 
-        index++
+let next = null;
+function reversN(head,n){
+    if(n===1){
+        next = head.next;
+        return head;
     }
 
-    return newNode.next;
+    const last = reversN(head.next,n-1);
+    head.next.next = head;
+    head.next = next;
+
+    return last
+
+}
+
+
+var reverseBetween = function(head, left, right) {
+
+    if(left ===1){
+        return reversN(head,right)
+    }
+     head.next = reverseBetween(head.next,left-1,right-1)
+     return head;
+    
 };
 // @lc code=end
 
