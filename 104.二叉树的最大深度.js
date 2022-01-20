@@ -7,9 +7,10 @@
 // @lc code=start
 /**
  * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
 /**
@@ -17,9 +18,18 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    return root===null ? 0 :(1+Math.max(maxDepth(root.left),maxDepth(root.right)))
+   return  traverse(root)
 };
 
 
+function traverse(node){
+    if(!node) return 0;
+
+    let left = traverse(node.left);
+    let right = traverse(node.right);
+
+
+    return    Math.max(left,right)+1
+}
 // @lc code=end
 
